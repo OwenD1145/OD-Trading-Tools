@@ -56,10 +56,6 @@ def addorderslimit(df, percent):
             ordersignal[i] = df.Close[i] - df.Close[i] * percent
         elif df.Close[i] >= df['BBU_14_2.0'][i] and df.EMASignal[i] == 1:
             ordersignal[i] = df.Close[i] - df.Close[i] * percent
-        # if df.Close[i] <= df['BBL_20_2.5'][i] and df.EMASignal[i] == 2:
-        #     ordersignal[i] = df.Close[i] - df.Close[i] * percent
-        # elif df.Close[i] >= df['BBU_20_2.5'][i] and df.EMASignal[i] == 1:
-        #     ordersignal[i] = df.Close[i] - df.Close[i] * percent
     df['ordersignal'] = ordersignal   
     
 # Visualization Functions
@@ -67,7 +63,7 @@ def pointposbreak(x):
     if x['ordersignal'] != 0:
         return x['ordersignal']
     else:
-        return np.nan
+        return np.NaN
     
 # Pulling Stock Data From Yahoo Finance
 # dfStock = yf.download("^index"... For Index/ETF")
