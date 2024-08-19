@@ -5,6 +5,5 @@ datetime
 pandas_ta
 numpy==1.26.3
 plotly
-plotly.graph_objects
 backtesting
 bokeh==2.4.3
