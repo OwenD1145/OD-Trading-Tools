@@ -10,7 +10,7 @@ import backtesting
 from backtesting import Backtest
 from backtesting import Strategy
 import bokeh
-import matplotlib
+
 
 # MAINPAGE
 st.set_page_config(
