@@ -3,7 +3,7 @@ pandas
 yfinance
 datetime
 pandas_ta
-numpy
+numpy==1.26.3
 plotly
 backtesting
 bokeh==2.4.3
