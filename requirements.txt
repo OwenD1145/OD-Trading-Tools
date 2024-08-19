@@ -4,7 +4,6 @@ yfinance
 datetime
 pandas_ta
 numpy
-plotly.graph_objects
-plotly.subplots
+plotly
 backtesting
 bokeh==2.4.3
