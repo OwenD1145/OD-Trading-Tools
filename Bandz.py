@@ -42,7 +42,6 @@ myEMA2 = int(st.text_input("Slow Moving Average",
    
 st.code("Tune your parameters for Backtesting")
 myCash = st.number_input("How Much Money Are We Playing With?",
-                        value = None,
                         placeholder = "1000"
                         )
 
