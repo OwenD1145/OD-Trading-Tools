@@ -11,7 +11,6 @@ from backtesting import Backtest
 from backtesting import Strategy
 import bokeh
 
-
 # MAINPAGE
 st.set_page_config(
   page_title="Owen's Trading Window",
@@ -22,20 +21,37 @@ st.set_page_config(
 st.title(":bar_chart: Bollinger Band Trading")
 st.markdown("##")
 st.header("This tool is for educational purposes only. This is not trading advice.")
+st.code("Choose your stock and date range")
 myStock = st.text_input("Enter Stock to View",
                         "AVGO",
                         key = "placeholder"
                         )
-# myCash = st.text_input("How Much Money Are We Playing With?",
-#                         '1000',
-#                         key = "placeholder2"
-#                         )
-# myMargin = st.text_input("Whats Your Margin?",
-#                         '1/5',
-#                         key = "placeholder3"
-#                         )
 dateStart = st.date_input("Enter Start Date", datetime.date(2014, 1, 30))
 dateEnd = st.date_input("Enter End Date", datetime.date(2024, 1, 30))
+
+st.code("Adjust your Fast / Slow exponential moving average")
+
+myEMA = int(st.text_input("Fast Moving Average",
+                        '200',
+                        key = "placeholder2"
+                        ))
+myEMA2 = int(st.text_input("Slow Moving Average",
+                        '150',
+                        key = "placeholder3"
+                        ))
+   
+st.code("Tune your parameters for Backtesting")
+myCash = st.number_input("How Much Money Are We Playing With?",
+                        value = None,
+                        placeholder = "1000"
+                        )
+
+stMargin = int(st.text_input("Whats Your Margin? 1/*",
+                        '5',
+                        key = "placeholder4"
+                        ))
+myMargin = float(1 / stMargin)
+
 
 # Determining if moving average is trending up or down and giving it a signal.
 # 2 == Buy, 1 == Sell
@@ -56,6 +72,10 @@ def addorderslimit(df, percent):
             ordersignal[i] = df.Close[i] - df.Close[i] * percent
         elif df.Close[i] >= df['BBU_14_2.0'][i] and df.EMASignal[i] == 1:
             ordersignal[i] = df.Close[i] - df.Close[i] * percent
+        # if df.Close[i] <= df['BBL_20_2.5'][i] and df.EMASignal[i] == 2:
+        #     ordersignal[i] = df.Close[i] - df.Close[i] * percent
+        # elif df.Close[i] >= df['BBU_20_2.5'][i] and df.EMASignal[i] == 1:
+        #     ordersignal[i] = df.Close[i] - df.Close[i] * percent
     df['ordersignal'] = ordersignal   
     
 # Visualization Functions
@@ -63,7 +83,7 @@ def pointposbreak(x):
     if x['ordersignal'] != 0:
         return x['ordersignal']
     else:
-        return np.NaN
+        return np.nan
     
 # Pulling Stock Data From Yahoo Finance
 # dfStock = yf.download("^index"... For Index/ETF")
@@ -74,8 +94,8 @@ dfStock.reset_index(inplace=True)
 dfStock.head()
 
 # Calculating fast and slow moving averages and an RSI value for each day
-dfStock['EMA'] = ta.ema(dfStock.Close, length = 200)
-dfStock['EMA2'] = ta.ema(dfStock.Close, length = 150)
+dfStock['EMA'] = ta.ema(dfStock.Close, length = myEMA)
+dfStock['EMA2'] = ta.ema(dfStock.Close, length = myEMA2)
 dfStock['RSI'] = ta.rsi(dfStock.Close, length = 12)    
 
 myBBandz = ta.bbands(dfStock.Close, length = 14, std = 2.0)
@@ -163,7 +183,9 @@ if st.button("Calculate Buying / Selling Signals"):
                     tp1 = self.data.Close[-1] - (sl1 - self.data.Close[-1]) * TPSLRatio
                     self.sell(sl = sl1, tp = tp1, size = self.mysize)
 
-        bt = Backtest(dfpl, myStrat, cash = 1000, margin = 1/5, commission = .000)
+        # bt = Backtest(dfpl, myStrat, cash = 1000, margin = 1/5, commission = .000)
+        bt = Backtest(dfpl, myStrat, cash = myCash, margin = myMargin, commission = .000)
+
         stat = bt.run()
         plot = bt.plot()
         st.dataframe(stat, use_container_width = True)
