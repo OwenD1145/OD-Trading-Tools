@@ -25,7 +25,7 @@ st.divider()
 st.markdown(''':blue-background[Choose your stock / fund and select a date range]''')
 
 myStock = str(st.text_input("Enter Stock / Fund to View",
-                        "AVGO",
+                        "QQQ",
                         key = "placeholder"
                         ))
 
