@@ -21,9 +21,7 @@ st.set_page_config(
 st.title(":bar_chart: Bollinger Band Trading")
 st.markdown("##")
 st.header("This tool is for educational purposes only. This is not trading advice.")
-st.markdown()
 st.divider()
-st.markdown()
 st.markdown(''':blue-background[Choose your stock / fund and select a date range]''')
 
 myStock = str(st.text_input("Enter Stock / Fund to View",
@@ -35,6 +33,7 @@ dateStart = st.date_input("Enter Start Date", datetime.date(2014, 1, 30))
 
 dateEnd = st.date_input("Enter End Date", datetime.date(2024, 1, 30))
 
+st.divider()
 st.markdown(''':blue-background[Adjust your Fast / Slow exponential moving average. 50- and 200-day EMAs are used as indicators for long-term trends.]''')
 
 myEMA = int(st.text_input("Fast Moving Average",
@@ -45,7 +44,8 @@ myEMA2 = int(st.text_input("Slow Moving Average",
                         '150',
                         key = "placeholder3"
                         ))
-   
+
+st.divider()
 st.markdown(''':blue-background[Tune your parameters for Backtesting]''')
 myCash = st.number_input("How Much Money Are We Playing With?",
                         placeholder = "1000"
