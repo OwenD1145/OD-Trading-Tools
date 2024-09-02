@@ -39,7 +39,7 @@ myEMA = int(st.text_input("Fast Moving Average",
                         key = "placeholder2"
                         ))
 myEMA2 = int(st.text_input("Slow Moving Average",
-                        '50',
+                        '150',
                         key = "placeholder3"
                         ))
    
