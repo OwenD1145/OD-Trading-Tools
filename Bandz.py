@@ -21,9 +21,9 @@ st.set_page_config(
 st.title(":bar_chart: Bollinger Band Trading")
 st.markdown("##")
 st.header("This tool is for educational purposes only. This is not trading advice.")
-st.markdown(''':blue-background[Choose your stock and date range]''')
+st.markdown(''':blue-background[Choose your stock / fund and select a date range]''')
 
-myStock = str(st.text_input("Enter Stock to View",
+myStock = str(st.text_input("Enter Stock / Fund to View",
                         "AVGO",
                         key = "placeholder"
                         ))
