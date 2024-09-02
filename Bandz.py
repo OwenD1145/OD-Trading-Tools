@@ -21,7 +21,7 @@ st.set_page_config(
 st.title(":bar_chart: Bollinger Band Trading")
 st.markdown("##")
 st.header("This tool is for educational purposes only. This is not trading advice.")
-st.code("Choose your stock and date range")
+st.markdown(''':blue-background[Choose your stock and date range]''')
 
 myStock = str(st.text_input("Enter Stock to View",
                         "AVGO",
@@ -43,7 +43,7 @@ myEMA2 = int(st.text_input("Slow Moving Average",
                         key = "placeholder3"
                         ))
    
-st.code("Tune your parameters for Backtesting")
+st.markdown(''':blue-background[Tune your parameters for Backtesting]''')
 myCash = st.number_input("How Much Money Are We Playing With?",
                         placeholder = "1000"
                         )
