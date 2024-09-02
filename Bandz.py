@@ -22,11 +22,14 @@ st.title(":bar_chart: Bollinger Band Trading")
 st.markdown("##")
 st.header("This tool is for educational purposes only. This is not trading advice.")
 st.code("Choose your stock and date range")
-myStock = st.text_input("Enter Stock to View",
+
+myStock = str(st.text_input("Enter Stock to View",
                         "AVGO",
                         key = "placeholder"
-                        )
+                        ))
+
 dateStart = st.date_input("Enter Start Date", datetime.date(2014, 1, 30))
+
 dateEnd = st.date_input("Enter End Date", datetime.date(2024, 1, 30))
 
 st.code("Adjust your Fast / Slow exponential moving average")
