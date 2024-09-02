@@ -32,7 +32,7 @@ dateStart = st.date_input("Enter Start Date", datetime.date(2014, 1, 30))
 
 dateEnd = st.date_input("Enter End Date", datetime.date(2024, 1, 30))
 
-st.markdown(blue-background["Adjust your Fast / Slow exponential moving average. 50- and 200-day EMAs are used as indicators for long-term trends."])
+st.markdown(:blue-background["Adjust your Fast / Slow exponential moving average. 50- and 200-day EMAs are used as indicators for long-term trends."])
 
 myEMA = int(st.text_input("Fast Moving Average",
                         '200',
