@@ -115,6 +115,8 @@ dfStock.reset_index(inplace = True)
 if st.button("Calculate Buying / Selling Signals"):
     if len(dfStock) == 0:
         st.text("Hmm, check your date ranges or stock symbol")
+    elif myCash == 0:
+        st.text("Hmm, Appears There's no Money in the Pot")
     else:
         addEMAsignal(dfStock)
         addorderslimit(dfStock, 0.000)
